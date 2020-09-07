@@ -1,0 +1,28 @@
+﻿@model WeatherAppCore.Models.WeatherData
+
+
+<h2>Загрузка архивов погоды</h2>
+@using (Html.BeginForm("Import",
+                       "Weather",
+                       FormMethod.Post,
+                       new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Выберите файл Excel:</label>
+    <input type="file" name="file" id="file" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" />
+    <br>
+    <br>
+
+    <input type="submit" value="Загрузить ..." />
+
+    <br>
+    <br>
+
+    @ViewBag.Message
+}
+<div>
+    <a asp-action="Index">Перейти к просмотру архивов</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
